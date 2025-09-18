@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Ready for Pickup</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .content {
+            padding: 15px 0;
+        }
+        h3 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .pickup-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+        .pickup-table th {
+            background-color: #2c3e50;
+            color: #ffffff;
+            text-align: left;
+            padding: 10px;
+            font-size: 13px;
+        }
+        .pickup-table td {
+            border-bottom: 1px solid #eeeeee;
+            padding: 10px;
+            text-align: left;
+            font-size: 13px;
+        }
+        .pickup-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .pickup-section {
+            background-color: #f0fff0;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+        .address-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #2c3e50;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .footer {
+            border-top: 1px solid #eeeeee;
+            padding-top: 15px;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666666;
+        }
+        .contact-info {
+            margin-top: 10px;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .invoice-notice {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                {% logo 200 200 %}
+            </div>
+            <div class="company-name">{{site.name}}</div>
+        </div>
+        
+        <div class="content">
+            <h3>Hello {{ customer.first_name }},</h3>
+            
+            <p>Good news! Your order is ready for pickup.</p>
+            
+            <div class="pickup-section">
+                <h3>Pickup Information</h3>
+                <p>Your order is now available for collection. Please reference your invoice number when you arrive:</p>
+                <p class="invoice-notice">Invoice #: <strong>{{ order.invoice_number }}</strong>
+                {% if order.po_number != blank %}<br>PO #: <strong>{{ order.po_number }}</strong>{% endif %}</p>
+            </div>            
+            <div class="address-box">
+                <h3>Pickup Location & Hours</h3>
+                <p><strong>Address:</strong>Suwanee, GA 30005</p>
+                <p><strong>Business Hours:</strong></p>
+                <ul style="margin-top: 0; padding-left: 20px;">
+                    <li>Monday - Friday: 9:00 AM - 5:00 PM</li>
+                    <li>Saturday: 9:00 AM - 2:00 PM</li>
+                    <li>Sunday: Closed</li>
+                </ul>
+            </div>
+            
+            <p>Thank you for your business,</p>
+            <p><strong>{{ site.name }}</strong></p>
+        </div>
+        
+        <div class="footer">
+            <div class="contact-info">
+                <p>Website: <a href="http://{{ site.primary_domain }}">{{ site.primary_domain }}</a></p>
+                {{ message_html }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

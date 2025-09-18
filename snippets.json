@@ -1,0 +1,34 @@
+{
+  "categories": [
+    {
+      "name": "Order Sheet Templates",
+      "snippets": [
+        {
+          "title": "Order Sheet Styling",
+          "language": "html",
+          "file": "templates/order-sheet.html"
+        }
+      ]
+    },
+    {
+      "name": "Production Worksheet",
+      "snippets": [
+        {
+          "title": "Production Worksheet",
+          "language": "html",
+          "file": "templates/production-worksheet.html"
+        }
+      ]
+    },
+    {
+      "name": "Pickup Sheet Templates",
+      "snippets": [
+        {
+          "title": "Customer Pickup Sheet",
+          "language": "html",
+          "file": "templates/pickup-sheet.html"
+        }
+      ]
+    }
+  ]
+}

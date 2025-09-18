@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Snippet Workspace</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Code Snippet Workspace</h1>
+            <p>Copy and paste code snippets for your templates</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-button active" onclick="showTab('snippets')">Code Snippets</button>
+            <button class="tab-button" onclick="showTab('tutorials')">Video Tutorials</button>
+        </nav>
+
+        <div id="snippets" class="tab-content active">
+            <!-- Snippets will be loaded dynamically from snippets.json -->
+
+            <div class="add-snippet">
+                <h3>Add New Snippet</h3>
+                <form id="snippet-form">
+                    <input type="text" id="snippet-title" placeholder="Snippet title" required>
+                    <select id="snippet-language">
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="json">JSON</option>
+                    </select>
+                    <textarea id="snippet-code" placeholder="Paste your code here..." required></textarea>
+                    <input type="file" id="snippet-thumbnail" accept="image/*" style="display: none;">
+                    <button type="button" onclick="document.getElementById('snippet-thumbnail').click()">Choose Thumbnail (Optional)</button>
+                    <span id="thumbnail-name"></span>
+                    <button type="submit">Add Snippet</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="tutorials" class="tab-content">
+            <div class="tutorial-section">
+                <h2>Implementation Tutorials</h2>
+
+                <div class="video-card">
+                    <div class="video-header">
+                        <h3>How to Use Button Components</h3>
+                        <span class="duration">3:45</span>
+                    </div>
+                    <div class="video-placeholder">
+                        <p>Click "Add Video" to embed tutorial</p>
+                    </div>
+                    <div class="video-description">
+                        <p>Learn how to implement and customize button components in your templates.</p>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-header">
+                        <h3>CSS Grid Layout Tutorial</h3>
+                        <span class="duration">8:20</span>
+                    </div>
+                    <div class="video-placeholder">
+                        <p>Click "Add Video" to embed tutorial</p>
+                    </div>
+                    <div class="video-description">
+                        <p>Master responsive grid layouts with practical examples.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-tutorial">
+                <h3>Add New Tutorial</h3>
+                <form id="tutorial-form">
+                    <input type="text" id="tutorial-title" placeholder="Tutorial title" required>
+                    <input type="text" id="tutorial-duration" placeholder="Duration (e.g., 5:30)">
+                    <input type="url" id="tutorial-url" placeholder="Video URL (YouTube, Vimeo, etc.)" required>
+                    <textarea id="tutorial-description" placeholder="Tutorial description..."></textarea>
+                    <button type="submit">Add Tutorial</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

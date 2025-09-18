@@ -1,0 +1,396 @@
+<link rel="stylesheet" href="/barcode/fre3of9x.css">
+<style>
+  :root {
+    --primary-color: #4361ee;
+    --primary-light: #e9efff;
+    --accent-color: #3f37c9;
+    --text-color: #333333;
+    --light-text: #6c757d;
+    --border-color: #e1e5eb;
+    --success-color: #38b000;
+    --danger-color: #d90429;
+    --warning-color: #ffbe0b;
+    --light-bg: #f8f9fa;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-main);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: #fff;
+  }
+
+  #in_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  #in_pre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+
+  #status {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 12px;
+  }
+
+  #status.green{
+  background: none;
+  background-color: lightgreen;
+  color: white;
+  font-size: large;
+  }
+
+
+  #status.red {
+      background: none;
+    background-color: var(--danger-color);
+    color: white;
+  }
+
+  #status.purple {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  .document-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  #in_header {
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .details h1 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .details h1 a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  .order ul {
+    list-style: none;
+  }
+
+  .order h2 {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .order h2 label {
+    font-weight: 600;
+    margin-right: 10px;
+    color: var(--light-text);
+  }
+
+  .order li {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .order li label {
+    font-weight: 500;
+    margin-right: 15px;
+    color: var(--light-text);
+    min-width: 120px;
+  }
+
+  .barcode {
+    font-family: 'fre3of9x';
+    font-size: 40px;
+    margin: 10px 0;
+  }
+
+  #in_customer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .billing, .shipping {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: var(--light-bg);
+    box-shadow: var(--shadow);
+  }
+
+  .billing h3, .shipping h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+  }
+
+  .billing h4, .shipping h4 {
+    margin-bottom: 10px;
+  }
+
+  .billing span, .shipping span {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  #in_body {
+    margin-bottom: 30px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  table.hundred {
+    width: 100%;
+  }
+
+table th {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: left;
+  padding: 12px 15px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+}
+
+  th {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: left;
+    padding: 12px 15px;
+    font-weight: 600;
+  }
+
+  td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: var(--light-bg);
+  }
+
+  tbody tr:hover {
+    background-color: var(--primary-light);
+  }
+
+  .text_left {
+    text-align: left;
+  }
+
+  .text_right {
+    text-align: right;
+  }
+
+  .text_center {
+    text-align: center;
+  }
+
+  tr.total td {
+    font-weight: 700;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+  }
+
+  tfoot tr:last-child td {
+    border-bottom: none;
+    font-weight: 700;
+    font-size: 1.1em;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+  }
+
+  #in_totals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .notes {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .totals {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .notes h3 {
+    color: var(--primary-color);
+    margin: 15px 0 10px;
+    font-size: 16px;
+  }
+
+  .notes p {
+    margin-bottom: 15px;
+  }
+
+  #in_sign {
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .sig, .date {
+    border-top: 1px solid var(--border-color);
+    padding-top: 10px;
+    min-width: 200px;
+  }
+
+  .sig label, .date label {
+    font-weight: 500;
+    color: var(--light-text);
+    margin-right: 10px;
+  }
+
+  .heading {
+    font-weight: 600;
+  }
+
+  .qty {
+    font-weight: 500;
+  }
+
+  .totals_table tr:last-child {
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+
+  .divider {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .image_row {
+    margin-bottom: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .image_row h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--primary-color);
+  }
+
+  .image_row ul.image {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .image_row ul.image li {
+    text-align: center;
+  }
+
+  .image_row ul.image label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .image_row ul.image img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+  }
+
+  .image_row .details ul {
+    list-style: none;
+  }
+
+  .image_row .details li {
+    margin-bottom: 10px;
+  }
+
+  .image_row .details label {
+    font-weight: 600;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .colorbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+  }
+
+  ul.color_list {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.color_list li {
+    margin-bottom: 5px;
+  }
+
+  @media (max-width: 768px) {
+    #in_header, #in_customer, #in_totals {
+      flex-direction: column;
+    }
+
+    .billing, .shipping {
+      margin-bottom: 20px;
+    }
+
+    .image_row ul.image img {
+      max-width: 100%;
+    }
+  }
+</style>
